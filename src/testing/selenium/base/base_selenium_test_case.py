@@ -52,17 +52,17 @@ class BaseSeleniumTestCase(StaticLiveServerTestCase):
         except TimeoutException:
             raise self.failureException(msg or 'Element is not present or not visible.')
 
-    # def assertElementIsInvisible(self, locator: Union[Tuple, WebElement, str], msg: str = None) -> None:
-    #     try:
-    #         if len(locator) <= 2:
-    #             self.wait.until_not(ec.visibility_of_element_located(locator))
-    #         else:
-    #             self.wait.until_not(
-    #                 ec.visibility_of_element_located(locator[:2]), f'{locator[2]} should be invisible or not presented.'
-    #             )
-    #     except TimeoutException:
-    #         raise self.failureException(msg or 'Element is still visible.')
-    #
+    def assertElementIsInvisible(self, locator: Union[Tuple, WebElement, str], msg: str = None) -> None:
+        try:
+            if len(locator) <= 2:
+                self.wait.until_not(ec.visibility_of_element_located(locator))
+            else:
+                self.wait.until_not(
+                    ec.visibility_of_element_located(locator[:2]), f'{locator[2]} should be invisible or not presented.'
+                )
+        except TimeoutException:
+            raise self.failureException(msg or 'Element is still visible.')
+
     # def assertElementHasText(self, locator: Union[Tuple, WebElement, str], expected_text: str) -> None:
     #     self.assertEquals(self.find_element(locator).text, expected_text)
 

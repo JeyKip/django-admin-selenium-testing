@@ -40,6 +40,7 @@ EXTERNAL_APPS = [
 INTERNAL_APPS = [
     'users',
     'testing',
+    'locations',
 ]
 
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS

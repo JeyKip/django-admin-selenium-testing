@@ -7,7 +7,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from .base_admin_test_case import BaseAdminTestCase
 
 
-class BaseAdminListTestCase(BaseAdminTestCase):
+class BaseAdminListPageTestCase(BaseAdminTestCase):
     result_list_locator = (By.ID, 'result_list')
 
     result_list_columns_locator = (By.CSS_SELECTOR, 'thead tr th div.text span, thead tr th div.text a')
@@ -18,12 +18,12 @@ class BaseAdminListTestCase(BaseAdminTestCase):
     def assertResultListIsShown(self) -> None:
         self.assertElementIsVisible(self.result_list_locator, 'Result list is expected to be shown.')
 
-    # def assertResultListIsNotShown(self) -> None:
-    #     self.assertElementIsInvisible(self.result_list_locator, 'Result list is expected to not be shown.')
-    #
-    # def assertPaginatorHasNoRecordsText(self) -> None:
-    #     self.assertPaginatorHasTextForRecords(0)
-    #
+    def assertResultListIsNotShown(self) -> None:
+        self.assertElementIsInvisible(self.result_list_locator, 'Result list is expected to not be shown.')
+
+    def assertPaginatorHasNoRecordsText(self) -> None:
+        self.assertPaginatorHasTextForRecords(0)
+
     def assertPaginatorHasTextForRecords(self, records_number: int) -> None:
         if records_number == 1:
             expected_text = f'1 {self.model_cls._meta.verbose_name}'

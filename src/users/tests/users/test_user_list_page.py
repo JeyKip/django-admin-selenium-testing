@@ -1,12 +1,12 @@
 from dateutil.relativedelta import relativedelta
 from django.utils import timezone
 
-from testing.selenium.base import BaseAdminListTestCase, BaseAdminTestCaseSuperuserMixin
+from testing.selenium.base import BaseAdminListPageTestCase, BaseAdminTestCaseSuperuserMixin
 from users.models import User
 from users.tests.factories import UserFactory
 
 
-class UserListPageTestCase(BaseAdminTestCaseSuperuserMixin, BaseAdminListTestCase):
+class UserListPageTestCase(BaseAdminTestCaseSuperuserMixin, BaseAdminListPageTestCase):
     model_cls = User
 
     EMAIL_FIELD = 'Email address'

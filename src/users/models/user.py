@@ -5,6 +5,8 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from locations.models import Country
+
 
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **kwargs):
@@ -47,6 +49,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     date_of_birth = models.DateField(_('date of birth'), null=True, blank=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now, db_index=True)
+    country = models.ForeignKey(
+        Country,
+        verbose_name=_('Country'),
+        on_delete=models.SET_NULL,
+        related_name='users',
+        null=True, blank=True,
+    )
 
     USERNAME_FIELD = 'email'
 
